@@ -1,11 +1,10 @@
 from typing import Union, Dict
 import time
-from aiida.engine import calcfunction
 from aiida.orm import Int, Float
 from aiida_workgraph import task
 
 
-@calcfunction
+@task()
 def add(
     x: Union[Int, Float], y: Union[Int, Float], t: Union[Int, Float] = 1.0
 ) -> Dict[str, Union[Int, Float]]:
@@ -14,7 +13,7 @@ def add(
     return {"sum": x + y}
 
 
-@calcfunction
+@task()
 def sum_diff(
     x: Union[Int, Float], y: Union[Int, Float], t: Union[Int, Float] = 1.0
 ) -> Dict[str, Union[Int, Float]]:
