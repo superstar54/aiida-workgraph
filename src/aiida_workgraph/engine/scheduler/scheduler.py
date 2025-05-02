@@ -30,7 +30,9 @@ from aiida_workgraph.utils import (
     query_existing_processes,
 )
 
-logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
+logging.basicConfig(
+    level=logging.INFO, format="[%(asctime)s] [%(levelname)s] %(message)s"
+)
 
 LOGGER = logging.getLogger(__name__)
 
@@ -394,7 +396,7 @@ class Scheduler:
         while True:
             pk = self._next_waiting_pk()
             if pk is None:
-                LOGGER.debug("No processes waiting; scheduler idle.")
+                LOGGER.info("No processes waiting; scheduler idle.")
                 break
 
             node = self._validate_before_continue(pk)
@@ -409,14 +411,14 @@ class Scheduler:
 
             if not self._has_capacity(node):
                 # queue is full – but there *is* work waiting
-                LOGGER.debug("Capacity full; will continue when a slot frees up.")
+                LOGGER.info("Capacity full; will continue when a slot frees up.")
                 break
 
             try:
                 self.continue_process(node)
                 self._log_summary()  # live feedback after each launch
             except Exception:  # noqa: BLE001 – keep scheduler alive
-                LOGGER.exception("Failed launching pk=%d – skipped.", pk)
+                LOGGER.warning("Failed launching pk=%d – skipped.", pk)
                 # failed launches are *not* removed from waiting so the user can retry
                 break
 
