@@ -54,6 +54,18 @@ This tab shows the workflow graph. Click on a task to see its inputs and outputs
 
 .. image:: ../_static/images/web-detail.png
 
+
+Control (pause, play, kill) the task
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Click on the task and then click on the control buttons. You can pause, play, or kill the task.
+
+
+.. image:: ../_static/images/control_buttons.png
+    :width: 300px
+    :align: center
+
+
 Logs
 ----
 

@@ -23,5 +23,4 @@ This section contains a collection of HowTos for various topics.
    autogen/error_resistant
    autogen/zone
    cli
-   control
    workchain_call_workgraph
